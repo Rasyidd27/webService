@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('kendaraans', function (Blueprint $table) {
             $table->id();
+            $table->string('no_pol',10);
+            $table->string('tahun_kendaraan',4);
+            $table->string('no_mesin',12);
+            $table->string('no_rangka',17);
+            $table->string('kapasitas_mesin',4);
+            $table->string('transmisi',2);
             $table->timestamps();
         });
     }

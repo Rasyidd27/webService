@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jenis_service as ModelsJenis_service;
 use Illuminate\Http\Request;
 
 class jenis_service extends Controller
@@ -11,7 +12,8 @@ class jenis_service extends Controller
      */
     public function index()
     {
-        //
+        $data = ModelsJenis_service::get();
+        return view('jenis_Service.tampilJenisService', compact('data'));
     }
 
     /**
@@ -19,7 +21,7 @@ class jenis_service extends Controller
      */
     public function create()
     {
-        //
+        return view ('jenis_Service.tambahJenisService');
     }
 
     /**
@@ -27,23 +29,22 @@ class jenis_service extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new ModelsJenis_service();
+        $data->jns_service=$request->jns_service;
+        $data->keterangan=$request->keterangan;
+        $data->save();
+        return redirect('jenis-service');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $data = ModelsJenis_service::where('id', '=', $id)->get();
+        return view('jenis-service.editJenisService', compact('data', 'id'));
     }
 
     /**
@@ -51,7 +52,12 @@ class jenis_service extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = ModelsJenis_service::where('id', 'id', $id);
+        $data->update([
+            'jns_service'=>$request->nm_jns_kendaraan,
+            'keterangan'=>$request->keterangan,
+        ]);
+        return redirect('jenis-service');
     }
 
     /**
@@ -59,6 +65,8 @@ class jenis_service extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = ModelsJenis_service::where('id', '=', $id);
+        $data->delete();
+        return redirect('jenis-service');
     }
 }

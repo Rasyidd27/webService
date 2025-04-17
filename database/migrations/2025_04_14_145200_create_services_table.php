@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->text('keluhan');
+            $table->date('tgl_masuk');
+            $table->date('tgl_keluar');
             $table->timestamps();
         });
     }

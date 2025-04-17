@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\detail_service as ModelsDetail_service;
 use Illuminate\Http\Request;
 
 class detail_service extends Controller
@@ -11,7 +12,8 @@ class detail_service extends Controller
      */
     public function index()
     {
-        //
+        $data = ModelsDetail_service::get();
+        return view('detail_Service.tampilDetailService', compact('data'));
     }
 
     /**
@@ -19,7 +21,7 @@ class detail_service extends Controller
      */
     public function create()
     {
-        //
+        return view ('detail_Service.tambahDetailService');
     }
 
     /**
@@ -27,23 +29,21 @@ class detail_service extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new ModelsDetail_service();
+        $data->sparepart=$request->sparepart;
+        $data->harga=$request->harga;
+        $data->save();
+        return redirect('detail-service');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
+   
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $data = ModelsDetail_service::where('id', '=', $id)->get();
+        return view('detail-service.editDetailService', compact('data', 'id'));
     }
 
     /**
@@ -51,7 +51,12 @@ class detail_service extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = ModelsDetail_service::where('id', 'id', $id);
+        $data->update([
+            'sparepart'=>$request->sparepart,
+            'harga'=>$request->harga,
+        ]);
+        return redirect('detail-service');
     }
 
     /**
@@ -59,6 +64,8 @@ class detail_service extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = ModelsDetail_service::where('id', '=', $id);
+        $data->delete();
+        return redirect('detail-service');
     }
 }

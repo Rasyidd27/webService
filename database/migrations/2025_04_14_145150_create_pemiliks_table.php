@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('pemiliks', function (Blueprint $table) {
             $table->id();
+            $table->string('nm_pemilik',50);
+            $table->date('tgl_lahir');
+            $table->text('alamat',);
+            $table->string('nik',16);
+            $table->string('no_hp',13);
             $table->timestamps();
         });
     }

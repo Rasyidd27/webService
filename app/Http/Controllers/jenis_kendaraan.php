@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jenis_kendaraan as ModelsJenis_kendaraan;
+use App\Models\jenis_service;
 use Illuminate\Http\Request;
 
 class jenis_kendaraan extends Controller
@@ -11,7 +13,8 @@ class jenis_kendaraan extends Controller
      */
     public function index()
     {
-        //
+        $data = ModelsJenis_kendaraan::get();
+        return view('jenis_Kendaraan.tampilJenisKendaraan', compact('data'));
     }
 
     /**
@@ -19,7 +22,7 @@ class jenis_kendaraan extends Controller
      */
     public function create()
     {
-        //
+        return view ('jenis_Kendaraan.tambahJenisKendaraan');
     }
 
     /**
@@ -27,23 +30,21 @@ class jenis_kendaraan extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new ModelsJenis_kendaraan();
+        $data->nm_jns_kendaraan=$request->nm_jns_kendaraan;
+        $data->save();
+        return redirect('jenis-kendaraan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $data = ModelsJenis_kendaraan::where('id', '=', $id)->get();
+        return view('jenis-kendaraan.editJenisKendaraan', compact('data', 'id'));
     }
 
     /**
@@ -51,7 +52,11 @@ class jenis_kendaraan extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = ModelsJenis_kendaraan::where('id', 'id', $id);
+        $data->update([
+            'nm_jns_kendaraan'=>$request->nm_jns_kendaraan,
+        ]);
+        return redirect('jenis-kendaraan');
     }
 
     /**
@@ -59,6 +64,8 @@ class jenis_kendaraan extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = ModelsJenis_kendaraan::where('id', '=', $id);
+        $data->delete();
+        return redirect('jenis-kendaraan');
     }
 }

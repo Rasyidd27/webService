@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\mekanik as ModelsMekanik;
 use Illuminate\Http\Request;
 
 class mekanik extends Controller
@@ -11,7 +12,8 @@ class mekanik extends Controller
      */
     public function index()
     {
-        //
+        $data = ModelsMekanik::get();
+        return view('Mekanik.tampilMekanik', compact('data'));
     }
 
     /**
@@ -19,7 +21,7 @@ class mekanik extends Controller
      */
     public function create()
     {
-        //
+        return view ('Mekanik.tambahMekanik');
     }
 
     /**
@@ -27,23 +29,24 @@ class mekanik extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new ModelsMekanik();
+        $data->nm_mekanis=$request->nm_mekanik;
+        $data->tgl_lahir=$request->tgl_lahir;
+        $data->alamat=$request->alamat;
+        $data->nik=$request->nik;
+        $data->no_hp=$request->no_hp;
+        $data->save();
+        return redirect('mekanik-');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $data = ModelsMekanik::where('id', '=', $id)->get();
+        return view('mekanik-.editMekanik', compact('data', 'id'));
     }
 
     /**
@@ -51,7 +54,15 @@ class mekanik extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = ModelsMekanik::where('id', 'id', $id);
+        $data->update([
+            'nm_mekanik'=>$request->nm_mekanik,
+            'tgl_lahir'=>$request->tgl_lahir,
+            'alamat'=>$request->alamat,
+            'nik'=>$request->nik,
+            'no_hp'=>$request->no_hp,
+        ]);
+        return redirect('mekanik-');
     }
 
     /**
@@ -59,6 +70,8 @@ class mekanik extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = ModelsMekanik::where('id', '=', $id);
+        $data->delete();
+        return redirect('mekanik-');
     }
 }
