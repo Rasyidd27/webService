@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_service', function (Blueprint $table) {
             $table->id();
             $table->string('sparepart',50);
-            $table->int('harga',7);
+            $table->integer('harga')->unsigned(7);
             $table->timestamps();
         });
     }

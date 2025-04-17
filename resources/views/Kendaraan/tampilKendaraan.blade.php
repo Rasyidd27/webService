@@ -62,8 +62,8 @@
                                                 <td>{{ $row->kapasitas_mesin }}</td>
                                                 <td>{{ $row->transmisi }}</td>
                                                 <td>
-                                                    <a href="{{ route('kendaraan.edit', $row->id_kendaraan) }}" class="btn btn-warning">Edit</a>
-                                                    <a href="{{ route('kendaraan.delete', $row->id_kendaraan) }}" class="btn btn-danger">Delete</a>
+                                                    <a href="{{ route('kendaraan-.edit', $row->id_kendaraan) }}" class="btn btn-warning">Edit</a>
+                                                    <a href="{{ route('kendaraan-.delete', $row->id_kendaraan) }}" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach

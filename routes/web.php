@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('template');
-});
+})->name('home');
 
 Route::get('/detail-service',[detail_service::class,'index'])->name('detail-service.index');
 Route::get('/detail-service/add',[detail_service::class,'create'])->name('detail-service.create');
@@ -33,12 +33,12 @@ Route::get('/detail-service/edit/{id}',[detail_service::class,'edit'])->name('de
 Route::post('/detail-service/edit/{id}',[detail_service::class,'update'])->name('detail-service.update');
 Route::get('/detail-service/delete/{id}',[detail_service::class,'destroy'])->name('detail-service.delete');
 
-Route::get('/jenis-kendaraan',[jenis_service::class,'index'])->name('jenis-kendaraan.index');
-Route::get('/jenis-kendaraan/add',[jenis_service::class,'create'])->name('jenis-kendaraan.create');
-Route::post('/jenis-kendaraan/add',[jenis_service::class,'store'])->name('jenis-kendaraan.store');
-Route::get('/jenis-kendaraan/edit/{id}',[jenis_service::class,'edit'])->name('jenis-kendaraan.edit');
-Route::post('/jenis-kendaraan/edit/{id}',[jenis_service::class,'update'])->name('jenis-kendaraan.update');
-Route::get('/jenis-kendaraan/delete/{id}',[jenis_service::class,'destroy'])->name('jenis-kendaraan.delete');
+Route::get('/jenis-service',[jenis_service::class,'index'])->name('jenis-service.index');
+Route::get('/jenis-service/add',[jenis_service::class,'create'])->name('jenis-service.create');
+Route::post('/jenis-service/add',[jenis_service::class,'store'])->name('jenis-service.store');
+Route::get('/jenis-service/edit/{id}',[jenis_service::class,'edit'])->name('jenis-service.edit');
+Route::post('/jenis-service/edit/{id}',[jenis_service::class,'update'])->name('jenis-service.update');
+Route::get('/jenis-service/delete/{id}',[jenis_service::class,'destroy'])->name('jenis-service.delete');
 
 Route::get('/jenis_kendaraan',[jenis_kendaraan::class,'index'])->name('jenis_kendaraan.index');
 Route::get('/jenis_kendaraan/add',[jenis_kendaraan::class,'create'])->name('jenis_kendaraan.create');

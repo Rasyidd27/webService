@@ -41,7 +41,7 @@
                             <!--end::Header-->
                             <!--begin::Form-->
                             @foreach($data as $row)
-                                <form class="needs-validation" action="{{ route('kendaraan.update', $id) }}" method="post" novalidate>
+                                <form class="needs-validation" action="{{ route('kendaraan-.update', $id) }}" method="post" novalidate>
                                     <!--begin::Body-->
                                     @csrf
                                     <div class="card-body">

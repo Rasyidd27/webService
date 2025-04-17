@@ -40,7 +40,7 @@
                             </div>
                             <!--end::Header-->
                             <!--begin::Form-->
-                            <form class="needs-validation" action="{{ route('kendaraan.store') }}" method="post" novalidate>
+                            <form class="needs-validation" action="{{ route('kendaraan-.store') }}" method="post" novalidate>
                                 <!--begin::Body-->
                                 @csrf
                                 <div class="card-body">
